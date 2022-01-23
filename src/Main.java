@@ -29,6 +29,32 @@ public class Main {
         System.out.println(driverAssignments);
         menu();
     }
+    private static int functionChoice() {
+        System.out.println("-----QUẢN LÝ PHÂN CÔNG LÁI XE BUS-------");
+        System.out.println("1.Nhập danh sách lái xe");
+        System.out.println("2.Nhập danh sách tuyến đường");
+        System.out.println("3.Danh sách phân công lái xe");
+        System.out.println("4.Sắp xếp danh sách phân công");
+        System.out.println("5.Kê khai tổng khoảng cách chay xe cho mỗi lái xe");
+        System.out.println("6.Thoát");
+        System.out.print("Nhập sự lựa chọn của bạn: ");
+        int functionChoice = 0;
+        boolean checkFunction = true;
+        do {
+            try {
+                functionChoice = new Scanner(System.in).nextInt();
+                checkFunction = true;
+            } catch (Exception e) {
+                System.out.println("Không được nhập ký tự khác ngoài số! Nhập lại: ");
+                continue;
+            }
+            if (functionChoice <= 0 || functionChoice > 6) {
+                System.out.print("Nhập số trong khoảng từ 1 đến 6! Nhập lại: ");
+                checkFunction = false;
+            } else break;
+        } while (!checkFunction);
+        return functionChoice;
+    }
 
     private static void menu() {
         do {
@@ -371,30 +397,5 @@ public class Main {
         FileUtil.writeDataToFile(drivers, "driverList.txt");
     }
 
-    private static int functionChoice() {
-        System.out.println("-----QUẢN LÝ PHÂN CÔNG LÁI XE BUS-------");
-        System.out.println("1.Nhập danh sách lái xe");
-        System.out.println("2.Nhập danh sách tuyến đường");
-        System.out.println("3.Danh sách phân công lái xe");
-        System.out.println("4.Sắp xếp danh sách phân công");
-        System.out.println("5.Kê khai tổng khoảng cách chay xe cho mỗi lái xe");
-        System.out.println("6.Thoát");
-        System.out.print("Nhập sự lựa chọn của bạn: ");
-        int functionChoice = 0;
-        boolean checkFunction = true;
-        do {
-            try {
-                functionChoice = new Scanner(System.in).nextInt();
-                checkFunction = true;
-            } catch (Exception e) {
-                System.out.println("Không được nhập ký tự khác ngoài số! Nhập lại: ");
-                continue;
-            }
-            if (functionChoice <= 0 || functionChoice > 6) {
-                System.out.print("Nhập số trong khoảng từ 1 đến 6! Nhập lại: ");
-                checkFunction = false;
-            } else break;
-        } while (!checkFunction);
-        return functionChoice;
-    }
+
 }
