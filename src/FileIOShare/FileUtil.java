@@ -10,7 +10,7 @@ public class FileUtil {
         if (DataUtil.isEmptyCollection(data)) {
             return;
         }
-        while (StringUtil.isEmptyString(fileName)) {
+        while (DataUtil.isEmptyString(fileName)) {
             System.out.println("Tên file không hợp lệ! Nhâp lại");
             fileName = new Scanner(System.in).nextLine();
         }
@@ -23,7 +23,7 @@ public class FileUtil {
     }
 
     public static List readDataFromFile(String fileName) {
-        if (StringUtil.isEmptyString(fileName)) {
+        if (DataUtil.isEmptyString(fileName)) {
             return new ArrayList<>();
         }
         try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(fileName))) {

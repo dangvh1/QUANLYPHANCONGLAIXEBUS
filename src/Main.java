@@ -2,7 +2,6 @@ import DrivingManagement.BusLineList;
 import DrivingManagement.DriverAssignment;
 import FileIOShare.DataUtil;
 import FileIOShare.FileUtil;
-import FileIOShare.ObjectUtil;
 import entity.BusLine;
 import entity.Driver;
 
@@ -253,10 +252,6 @@ public class Main {
                 continue;
             }
             driver = searchDriverId(tmpID);
-            if (ObjectUtil.isEmpty(driver)) {
-                System.out.print("Không có id lái xe vừa nhập! Nhập lại: ");
-                check = false;
-            }
             for (Integer integer : checkDriverID) {
                 if (integer == tmpID) {
                     System.out.println("Lái xe đã tồn tại! Nhập lại: ");
@@ -293,10 +288,6 @@ public class Main {
                 continue;
             }
             busLine = searchRouteId(tmpID);
-            if (ObjectUtil.isEmpty(busLine)) {
-                System.out.print("Không có id tuyến đường vừa nhập! Nhập lại: ");
-                check = false;
-            }
             for (Integer integer : checkBusLineID) {
                 if (integer == tmpID) {
                     System.out.println("Tuyến đường đã tồn tại! Nhập lại: ");
