@@ -58,8 +58,8 @@ public class Main {
 
     private static void menu() {
         do {
-            int functionChoice = functionChoice();
-            switch (functionChoice) {
+            int function = functionChoice();
+            switch (function) {
                 case 1:
                     createNewDriver();
                     break;
