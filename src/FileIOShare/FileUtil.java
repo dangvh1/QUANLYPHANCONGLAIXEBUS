@@ -2,15 +2,16 @@ package FileIOShare;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Scanner;
 
 public class FileUtil {
     public static <T> void writeDataToFile(List<T> data, String fileName) {
-        if (DataUtil.isEmptyCollection(data)) {
+        if (isEmptyCollection(data)) {
             return;
         }
-        while (DataUtil.isEmptyString(fileName)) {
+        while (isEmptyString(fileName)) {
             System.out.println("Tên file không hợp lệ! Nhâp lại");
             fileName = new Scanner(System.in).nextLine();
         }
@@ -23,7 +24,7 @@ public class FileUtil {
     }
 
     public static List readDataFromFile(String fileName) {
-        if (DataUtil.isEmptyString(fileName)) {
+        if (isEmptyString(fileName)) {
             return new ArrayList<>();
         }
         try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(fileName))) {
@@ -32,5 +33,12 @@ public class FileUtil {
             e.printStackTrace();
         }
         return new ArrayList<>();
+    }
+
+    public static <T> boolean isEmptyCollection(Collection<T> collection){
+        return collection == null || collection.isEmpty();
+    }
+    public static boolean isEmptyString(String fileName){
+        return fileName == null || fileName.trim().equals("");
     }
 }

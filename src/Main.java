@@ -1,6 +1,5 @@
 import DrivingManagement.BusLineList;
 import DrivingManagement.DriverAssignment;
-import FileIOShare.DataUtil;
 import FileIOShare.FileUtil;
 import entity.BusLine;
 import entity.Driver;
@@ -158,7 +157,7 @@ public class Main {
     }
 
     private static boolean isValidDiverAndBusLine() {
-        return !DataUtil.isEmptyCollection(drivers) && !DataUtil.isEmptyCollection(busLines);
+        return !FileUtil.isEmptyCollection(drivers) && !FileUtil.isEmptyCollection(busLines);
     }
 
     private static void assignmentList() {
@@ -238,6 +237,10 @@ public class Main {
         FileUtil.writeDataToFile(driverAssignments, "diverAssignmentList.txt");
     }
 
+    public static boolean isEmpty(Object obj) {
+        return obj == null;
+    }
+
     private static Driver inputDriverID() {
         int tmpID = 0;
         boolean check = true;
@@ -252,6 +255,10 @@ public class Main {
                 continue;
             }
             driver = searchDriverId(tmpID);
+            if (isEmpty(driver)) {
+                System.out.print("Không có id lái xe vừa nhập! Nhập lại: ");
+                check = false;
+            }
             for (Integer integer : checkDriverID) {
                 if (integer == tmpID) {
                     System.out.println("Lái xe đã tồn tại! Nhập lại: ");
@@ -288,6 +295,10 @@ public class Main {
                 continue;
             }
             busLine = searchRouteId(tmpID);
+            if (isEmpty(busLine)) {
+                System.out.print("Không có id tuyến đường vừa nhập! Nhập lại: ");
+                check = false;
+            }
             for (Integer integer : checkBusLineID) {
                 if (integer == tmpID) {
                     System.out.println("Tuyến đường đã tồn tại! Nhập lại: ");
