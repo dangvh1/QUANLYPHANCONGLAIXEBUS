@@ -6,12 +6,14 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Scanner;
 
+import static FileIOShare.DataUtil.isEmptyCollection;
+
 public class FileUtil {
     public static <T> void writeDataToFile(List<T> data, String fileName) {
         if (isEmptyCollection(data)) {
             return;
         }
-        while (isEmptyString(fileName)) {
+        while (StringUtil.isEmptyString(fileName)) {
             System.out.println("Tên file không hợp lệ! Nhâp lại");
             fileName = new Scanner(System.in).nextLine();
         }
@@ -24,7 +26,7 @@ public class FileUtil {
     }
 
     public static List readDataFromFile(String fileName) {
-        if (isEmptyString(fileName)) {
+        if (StringUtil.isEmptyString(fileName)) {
             return new ArrayList<>();
         }
         try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(fileName))) {
@@ -35,10 +37,4 @@ public class FileUtil {
         return new ArrayList<>();
     }
 
-    public static <T> boolean isEmptyCollection(Collection<T> collection){
-        return collection == null || collection.isEmpty();
-    }
-    public static boolean isEmptyString(String fileName){
-        return fileName == null || fileName.trim().equals("");
-    }
 }
